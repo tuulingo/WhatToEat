@@ -91,7 +91,7 @@
             app:layout_constraintWidth_percent="0.7" />
 
         <LinearLayout
-            android:id="@+id/layout_already_have_account"
+            android:id="@+id/layout_no_account"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
@@ -103,7 +103,7 @@
             app:layout_constraintWidth_percent="1.0">
 
             <TextView
-                android:id="@+id/tv_already_have_account"
+                android:id="@+id/tv_no_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don't have an account?"
@@ -113,7 +113,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_signup"
+                android:id="@+id/btn_goto_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

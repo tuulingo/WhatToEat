@@ -12,7 +12,7 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
 
-        val btn_SignUp: Button = findViewById(R.id.btn_signup)
+        val btn_SignUp: Button = findViewById(R.id.btn_goto_signup)
         btn_SignUp.setOnClickListener { switchToSignUpActivity() }
     }
 
