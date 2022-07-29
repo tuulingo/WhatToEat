@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "68346398057",
+    "project_id": "whattoeat-66495",
+    "storage_bucket": "whattoeat-66495.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68346398057:android:9926b34c1e7eeabfbf29f8",
+        "android_client_info": {
+          "package_name": "com.tuulingo.whattoeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68346398057-7h2rnb4tvlnu2ca9iqh1uqp2trq6ph7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgBjhi83dhl0Flsay5i37jQu7pBys4nBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68346398057-7h2rnb4tvlnu2ca9iqh1uqp2trq6ph7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
