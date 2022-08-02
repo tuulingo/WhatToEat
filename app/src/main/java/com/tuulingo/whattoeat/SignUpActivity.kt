@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignUpBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
@@ -26,6 +28,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.btnGotoLogin.setOnClickListener { switchToLogInActivity() }
 
+        var failedPasswordCounter: Int = 0
         binding.btnSignup.setOnClickListener {
             val email = binding.etSignupEmail.text.toString()
             val password = binding.etSignupPassword.text.toString()
@@ -33,7 +36,22 @@ class SignUpActivity : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
                 if (password == confirmPassword){
-                    createAccount(email, password)
+                    if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                        if(isValidPassword(password)){
+                            createAccount(email, password)
+                        }
+                        else{
+                            failedPasswordCounter++
+                            when (failedPasswordCounter) {
+                                1 -> Toast.makeText(this, "Make your password stronger", Toast.LENGTH_SHORT).show()
+                                else -> {
+                                    Toast.makeText(this, "Try using a symbol, capital letter or a number ", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }else{
+                        Toast.makeText(this, "That's not a correct email", Toast.LENGTH_SHORT).show()
+                    }
                 }else{
                     Toast.makeText(this, "Passwords are not matching", Toast.LENGTH_SHORT).show()
                 }
@@ -53,12 +71,8 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "createUserWithEmail:success")
                     switchToLogInActivity()
-/*                    val user = auth.currentUser
-                    updateUI(user)*/
                 } else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                     updateUI(null)
@@ -70,9 +84,13 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+    fun isValidPassword(password: String?) : Boolean {
+        password?.let {
+            val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
+            val passwordMatcher = Regex(passwordPattern)
 
-    companion object {
-        private const val TAG = "EmailPassword"
+            return passwordMatcher.find(password) != null
+        } ?: return false
     }
 
 
