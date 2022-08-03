@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">WhatToEat</string>
-    <string name="type_password">Type your password</string>
-    <string name="type_email">Type your email</string>
     <string name="type_your_password">Type Your Password</string>
+    <string name="signup_heading">Quick, I\'m getting hungry</string>
+    <string name="type_your_email">Type your Email</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
 </resources>
