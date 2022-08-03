@@ -84,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-    fun isValidPassword(password: String?) : Boolean {
+    private fun isValidPassword(password: String?) : Boolean {
         password?.let {
             val passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
             val passwordMatcher = Regex(passwordPattern)
