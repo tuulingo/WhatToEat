@@ -17,8 +17,15 @@
     <style name="LoginTextInputOuterFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">15dp</item>
-        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginTop">15sp</item>
+        <item name="android:layout_marginBottom">15sp</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintHorizontal_bias">0.5</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="boxStrokeColor">@color/pink</item>
+        <item name="boxStrokeWidth">1sp</item>
+        <item name="hintTextColor">@color/pink</item>
+        <item name="android:textColorHint">@color/black</item>
     </style>
 
     <style name="LoginTextInputInnerFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -29,5 +36,11 @@
         <item name="android:maxLines">1</item>
         <item name="android:textSize">14sp</item>
         <item name="android:singleLine">true</item>
+        <item name="boxStrokeWidth">2sp</item>
     </style>
+
+    <style name="Password_Field_Style" parent="LoginTextInputOuterFieldStyle">
+        <item name="endIconTint">@color/black</item>
+    </style>
+
 </resources>
