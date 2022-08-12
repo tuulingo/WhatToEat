@@ -72,9 +72,8 @@ class SignUpActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     switchToLogInActivity()
+                    Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
                     updateUI(null)
                 }
             }
