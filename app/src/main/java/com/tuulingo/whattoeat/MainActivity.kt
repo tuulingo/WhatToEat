@@ -1,28 +1,24 @@
 package com.tuulingo.whattoeat
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import android.R.*
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.tuulingo.whattoeat.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val retrofitBuilder = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(ApiInterface::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,18 +26,20 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getMyData()
+        getMainCourse()
+
 
     }
 
-    fun getMyData() {
-        val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiInterface::class.java)
+    private fun getMainCourse() {
 
-        val retrofitData = retrofitBuilder.getData()
+        var offsetAmount = OffsetAmount().offsetAmount(amount = 900)
+        Toast.makeText(applicationContext, "${offsetAmount}", Toast.LENGTH_LONG).show()
+
+        val retrofitData = retrofitBuilder.getMainCourse(
+            number = ITEMS_SHOWN,
+            offset = offsetAmount,
+            type = "main-course")
 
         retrofitData.enqueue(object : Callback<RecipesData?> {
             override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
@@ -69,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val BASE_URL = "https://api.spoonacular.com/"
+        const val ITEMS_SHOWN = "25"
     }
 
 }
