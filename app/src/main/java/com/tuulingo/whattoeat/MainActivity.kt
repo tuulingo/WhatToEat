@@ -33,12 +33,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun getMainCourse() {
 
-        var offsetAmount = OffsetAmount().offsetAmount(amount = 900)
-        Toast.makeText(applicationContext, "${offsetAmount}", Toast.LENGTH_LONG).show()
-
         val retrofitData = retrofitBuilder.getMainCourse(
+            apikey = API_KEY,
             number = ITEMS_SHOWN,
-            offset = offsetAmount,
+            offset = OffsetAmount().offsetAmount(amount = 900),
             type = "main-course")
 
         retrofitData.enqueue(object : Callback<RecipesData?> {
@@ -68,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val BASE_URL = "https://api.spoonacular.com/"
         const val ITEMS_SHOWN = "25"
+        const val API_KEY = BuildConfig.apiKey
     }
 
 }
