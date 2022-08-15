@@ -1,4 +1,6 @@
-package com.tuulingo.whattoeat
+package com.tuulingo.whattoeat.Data
+
+import com.tuulingo.whattoeat.Data.Result
 
 data class RecipesData(
     val number: Int,

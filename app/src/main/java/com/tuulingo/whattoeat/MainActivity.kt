@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.tuulingo.whattoeat.Api.ApiInterface
+import com.tuulingo.whattoeat.Api.Client
+import com.tuulingo.whattoeat.Data.RecipesData
 import com.tuulingo.whattoeat.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,11 +17,6 @@ import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val retrofitBuilder = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(ApiInterface::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getMainCourse() {
 
+        val retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
         val retrofitData = retrofitBuilder.getMainCourse(
             apikey = API_KEY,
             number = ITEMS_SHOWN,
@@ -64,7 +63,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val BASE_URL = "https://api.spoonacular.com/"
         const val ITEMS_SHOWN = "25"
         const val API_KEY = BuildConfig.apiKey
     }

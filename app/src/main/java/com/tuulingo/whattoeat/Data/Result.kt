@@ -1,4 +1,4 @@
-package com.tuulingo.whattoeat
+package com.tuulingo.whattoeat.Data
 
 data class Result(
     val id: Int,

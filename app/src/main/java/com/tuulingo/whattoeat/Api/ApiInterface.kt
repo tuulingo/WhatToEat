@@ -1,8 +1,7 @@
-package com.tuulingo.whattoeat
+package com.tuulingo.whattoeat.Api
 
+import com.tuulingo.whattoeat.Data.RecipesData
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface ApiInterface {
