@@ -7,7 +7,7 @@ import retrofit2.http.*
 interface ApiInterface {
 
     @GET("recipes/complexSearch")
-    fun getMainCourse(@Query("apiKey") apikey: String,
+    fun getRecipes(@Query("apiKey") apikey: String,
                       @Query("number") number: String,
                       @Query("offset") offset: String,
                       @Query("type") type: String)

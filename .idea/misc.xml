@@ -7,7 +7,9 @@
         <entry key="..\:/Users/tuuli/AndroidStudioProjects/WhatToEat/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/tuuli/AndroidStudioProjects/WhatToEat/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/tuuli/AndroidStudioProjects/WhatToEat/app/src/main/res/layout/adapter_food.xml" value="0.3359375" />
-        <entry key="..\:/Users/tuuli/AndroidStudioProjects/WhatToEat/app/src/main/res/layout/food_adapter.xml" value="0.25" />
+        <entry key="..\:/Users/tuuli/AndroidStudioProjects/WhatToEat/app/src/main/res/layout/food_adapter.xml" value="0.12" />
+        <entry key="..\:/Users/tuuli/AndroidStudioProjects/WhatToEat/app/src/main/res/layout/recipes_adapter.xml" value="0.1" />
+        <entry key="..\:/Users/tuuli/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/activity_list_item.xml" value="0.25" />
       </map>
     </option>
   </component>
