@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: RecipeAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var retrofitBuilder: ApiInterface
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,20 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
         getMainCourse()
-//        getBreakfast()
-
-
-    }
-
-    private fun init(){
+        getBreakfast()
+        getSalad()
+        getDessert()
+        getBeverage()
 
     }
 
     private fun getMainCourse() {
 
-
-        val retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
         val retrofitData = retrofitBuilder.getRecipes(
             apikey = API_KEY,
             number = ITEMS_SHOWN,
@@ -55,14 +54,9 @@ class MainActivity : AppCompatActivity() {
                 val responseBody = response.body()
                 val recipes = responseBody!!.results
 
-
-                val firstAdapter = RecipeAdapter(recipes, applicationContext)
                 recyclerView = findViewById(R.id.main_course_recycler_view)
                 recyclerView.setHasFixedSize(true)
                 recyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-                val firstManager = LinearLayoutManager(
-                    applicationContext, LinearLayoutManager.HORIZONTAL, false
-                )
                 adapter = RecipeAdapter(recipes, applicationContext)
                 recyclerView.adapter = adapter
 
@@ -77,9 +71,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*private fun getBreakfast() {
+    private fun getBreakfast() {
 
-        val retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
         val retrofitData = retrofitBuilder.getRecipes(
             apikey = API_KEY,
             number = ITEMS_SHOWN,
@@ -89,26 +82,111 @@ class MainActivity : AppCompatActivity() {
         retrofitData.enqueue(object : Callback<RecipesData?> {
             override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
                 val responseBody = response.body()
+                val recipes = responseBody!!.results
 
+                recyclerView = findViewById(R.id.breakfast_recycler_view)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                adapter = RecipeAdapter(recipes, applicationContext)
+                recyclerView.adapter = adapter
 
-                for (data in responseBody!!.results)
-                {
-                    myStringBuilder.append(data.title)
-                    myStringBuilder.append("\n")
-                }
-
-                binding.txtId.text = myStringBuilder
-
-                Log.d("MainActivity", "ei tulnddd error!!")
             }
 
             override fun onFailure(call: Call<RecipesData?>, t: Throwable) {
                 Toast.makeText(applicationContext, "$t", Toast.LENGTH_LONG).show()
-                Log.d("MainActivity", "tuli error!!"+t.message)
+                Log.d("MainActivity", "ERROR"+t.message)
             }
         })
 
-    }*/
+    }
+
+    private fun getSalad() {
+
+        val retrofitData = retrofitBuilder.getRecipes(
+            apikey = API_KEY,
+            number = ITEMS_SHOWN,
+            offset = OffsetAmount().offsetAmount(amount = 241),
+            type = "salad")
+
+        retrofitData.enqueue(object : Callback<RecipesData?> {
+            override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
+                val responseBody = response.body()
+                val recipes = responseBody!!.results
+
+                recyclerView = findViewById(R.id.salad_recycler_view)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                adapter = RecipeAdapter(recipes, applicationContext)
+                recyclerView.adapter = adapter
+
+            }
+
+            override fun onFailure(call: Call<RecipesData?>, t: Throwable) {
+                Toast.makeText(applicationContext, "$t", Toast.LENGTH_LONG).show()
+                Log.d("MainActivity", "ERROR"+t.message)
+            }
+        })
+
+    }
+
+    private fun getDessert() {
+
+        val retrofitData = retrofitBuilder.getRecipes(
+            apikey = API_KEY,
+            number = ITEMS_SHOWN,
+            offset = OffsetAmount().offsetAmount(amount = 274),
+            type = "dessert")
+
+        retrofitData.enqueue(object : Callback<RecipesData?> {
+            override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
+                val responseBody = response.body()
+                val recipes = responseBody!!.results
+
+                recyclerView = findViewById(R.id.dessert_recycler_view)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                adapter = RecipeAdapter(recipes, applicationContext)
+                recyclerView.adapter = adapter
+
+            }
+
+            override fun onFailure(call: Call<RecipesData?>, t: Throwable) {
+                Toast.makeText(applicationContext, "$t", Toast.LENGTH_LONG).show()
+                Log.d("MainActivity", "ERROR"+t.message)
+            }
+        })
+
+    }
+
+    private fun getBeverage() {
+
+        val retrofitData = retrofitBuilder.getRecipes(
+            apikey = API_KEY,
+            number = ITEMS_SHOWN,
+            offset = OffsetAmount().offsetAmount(amount = 61),
+            type = "beverage")
+
+        retrofitData.enqueue(object : Callback<RecipesData?> {
+            override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
+                val responseBody = response.body()
+                val recipes = responseBody!!.results
+
+                recyclerView = findViewById(R.id.beverage_recycler_view)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                adapter = RecipeAdapter(recipes, applicationContext)
+                recyclerView.adapter = adapter
+
+            }
+
+            override fun onFailure(call: Call<RecipesData?>, t: Throwable) {
+                Toast.makeText(applicationContext, "$t", Toast.LENGTH_LONG).show()
+                Log.d("MainActivity", "ERROR"+t.message)
+            }
+        })
+
+    }
+
 
     companion object {
         const val ITEMS_SHOWN = "25"
