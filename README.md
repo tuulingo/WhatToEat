@@ -3,10 +3,10 @@ Too often you can't pick your next dinner, or maybe you feel like having a salad
 
 ## Features
 
-New random recipes upon loading the app
-Sroll through food categories
-<b>In development</b>Add recipes as favorite
-<b>In development</b>Find recipes by choosing ingridients that you have.
+New random recipes upon loading the app<br />
+Scroll through food categories<br />
+<b>In development</b>Add recipes as favorite<br />
+<b>In development</b>Find recipes by choosing ingridients that you have.<br />
 
 ## Screenshots
 
