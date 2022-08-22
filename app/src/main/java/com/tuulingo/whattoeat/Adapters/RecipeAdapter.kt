@@ -16,8 +16,24 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 
 
 
-class RecipeAdapter(private val foodList: List<Result>, private val context: Context) :
+class RecipeAdapter(
+    val foodList: List<Result>,
+    private val context: Context,) :
     RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
+
+    private lateinit var mListener : onItemClickListener
+
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int){
+
+        }
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+
+        mListener = listener
+    }
 
     // create new views
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +41,7 @@ class RecipeAdapter(private val foodList: List<Result>, private val context: Con
         // that is used to hold list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.recipes_adapter, viewGroup, false)
-        return ViewHolder(view)
+        return ViewHolder(view, mListener)
 
     }
 
@@ -52,11 +68,16 @@ class RecipeAdapter(private val foodList: List<Result>, private val context: Con
     }
 
     // Holds the views for adding it to image and text
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view){
         val foodName: TextView
         val foodPicture: ImageView
 
+
         init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+
             foodName = view.findViewById(R.id.food_textView)
             foodPicture = view.findViewById(R.id.food_imageView)
         }

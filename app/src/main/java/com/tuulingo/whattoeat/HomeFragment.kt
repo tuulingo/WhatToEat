@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tuulingo.whattoeat.Adapters.RecipeAdapter
 import com.tuulingo.whattoeat.Api.ApiInterface
 import com.tuulingo.whattoeat.Api.Client
 import com.tuulingo.whattoeat.Data.RecipesData
+import com.tuulingo.whattoeat.Data.Result
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,6 +47,14 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun getMealData(adapter: RecipeAdapter) {
+        adapter.setOnItemClickListener(object : RecipeAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                Toast.makeText(requireActivity().application, "Clicked on ${adapter.foodList[position].id}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
     private fun getMainCourse() {
 
         val retrofitData = retrofitBuilder.getRecipes(
@@ -62,6 +73,7 @@ class HomeFragment : Fragment() {
                 recyclerView.layoutManager = LinearLayoutManager(requireActivity().application, RecyclerView.HORIZONTAL, false)
                 adapter = RecipeAdapter(recipes, requireActivity().application)
                 recyclerView.adapter = adapter
+                getMealData(adapter)
 
             }
 
@@ -91,6 +103,7 @@ class HomeFragment : Fragment() {
                 recyclerView.layoutManager = LinearLayoutManager(requireActivity().application, RecyclerView.HORIZONTAL, false)
                 adapter = RecipeAdapter(recipes, requireActivity().application)
                 recyclerView.adapter = adapter
+                getMealData(adapter)
 
             }
 
@@ -120,6 +133,7 @@ class HomeFragment : Fragment() {
                 recyclerView.layoutManager = LinearLayoutManager(requireActivity().application, RecyclerView.HORIZONTAL, false)
                 adapter = RecipeAdapter(recipes, requireActivity().application)
                 recyclerView.adapter = adapter
+                getMealData(adapter)
 
             }
 
@@ -149,6 +163,7 @@ class HomeFragment : Fragment() {
                 recyclerView.layoutManager = LinearLayoutManager(requireActivity().application, RecyclerView.HORIZONTAL, false)
                 adapter = RecipeAdapter(recipes, requireActivity().application)
                 recyclerView.adapter = adapter
+                getMealData(adapter)
 
             }
 
@@ -178,6 +193,7 @@ class HomeFragment : Fragment() {
                 recyclerView.layoutManager = LinearLayoutManager(requireActivity().application, RecyclerView.HORIZONTAL, false)
                 adapter = RecipeAdapter(recipes, requireActivity().application)
                 recyclerView.adapter = adapter
+                getMealData(adapter)
 
             }
 
