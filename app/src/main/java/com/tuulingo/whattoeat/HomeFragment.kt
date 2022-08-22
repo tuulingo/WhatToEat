@@ -24,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: RecipeAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var retrofitBuilder: ApiInterface
+    private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,10 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        if(isVisible){
+            menu.findItem(R.id.home).icon = ContextCompat.getDrawable(requireActivity().application, R.drawable.ic_baseline_home_24)
+        }
 
         retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
         getMainCourse()
