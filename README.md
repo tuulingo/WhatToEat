@@ -9,6 +9,10 @@ Scroll through food categories<br />
 <b>In development</b>Find recipes by choosing ingridients that you have.<br />
 
 ## Screenshots
+<a href="url"><img src="https://user-images.githubusercontent.com/49025519/186153617-23495081-6ca7-4c0e-9bc2-eedfac7ca558.png" height="618" width="302" ></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/49025519/186153633-7835916b-b7f2-44cc-8763-cdde58e76f29.png" height="618" width="302" ></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/49025519/186153646-2cd46871-c310-4c18-8e4d-6983d23da523.png" height="618" width="302" ></a>
+<br />
 
 ## Tech/framework used
 
