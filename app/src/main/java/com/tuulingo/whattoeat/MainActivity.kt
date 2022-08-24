@@ -33,8 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNav.itemIconTintList = null
 
-        replaceFragment(HomeFragment())
+        // Ingredients for dev because home makes api calls
+        replaceFragment(IngredientsFragment())
 
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
 
     companion object {
-        const val ITEMS_SHOWN = "2"
+        const val ITEMS_SHOWN = "5"
         const val API_KEY = BuildConfig.apiKey
     }
 
