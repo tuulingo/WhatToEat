@@ -29,19 +29,19 @@ open class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
-        retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
-        getMainCourse()
-        getBreakfast()
-        getSalad()
-        getDessert()
-        getBeverage()
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
+        getMainCourse()
+        getBreakfast()
+        getSalad()
+        getDessert()
+        getBeverage()
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -50,8 +50,11 @@ open class HomeFragment : Fragment() {
 
     private fun getMealData(adapter: RecipeAdapter) {
         adapter.setOnItemClickListener(object : RecipeAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                Toast.makeText(requireActivity().application, "Clicked on ${adapter.foodList[position].id}", Toast.LENGTH_SHORT).show()
+            override fun onItemClick(position: Int){
+                MainActivity.RECIPE_ID = adapter.foodList[position].id
+                Toast.makeText(requireActivity().application, "${MainActivity.RECIPE_ID} <--- see on sinu iiddd", Toast.LENGTH_SHORT).show()
+                val mainActivity = (activity as MainActivity)
+                mainActivity.switchToRecipeFragment()
             }
         })
     }

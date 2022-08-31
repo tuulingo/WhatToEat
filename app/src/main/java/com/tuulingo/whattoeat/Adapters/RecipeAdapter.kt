@@ -26,7 +26,6 @@ class RecipeAdapter(
     interface onItemClickListener{
 
         fun onItemClick(position: Int){
-
         }
     }
 
