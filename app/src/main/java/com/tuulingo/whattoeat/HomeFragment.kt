@@ -52,7 +52,6 @@ open class HomeFragment : Fragment() {
         adapter.setOnItemClickListener(object : RecipeAdapter.onItemClickListener{
             override fun onItemClick(position: Int){
                 MainActivity.RECIPE_ID = adapter.foodList[position].id
-                Toast.makeText(requireActivity().application, "${MainActivity.RECIPE_ID} <--- see on sinu iiddd", Toast.LENGTH_SHORT).show()
                 val mainActivity = (activity as MainActivity)
                 mainActivity.switchToRecipeFragment()
             }

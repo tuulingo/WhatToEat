@@ -14,9 +14,10 @@ interface ApiInterface {
                       @Query("type") type: String)
     : Call<RecipesData>
 
-    @GET("recipes")
-    fun getRecipeById(@Query("recipeId") recipeId: String,
-                      @Query("information") information: String,
+    @Headers("Accept: application/json")
+    @GET("recipes/{recipeId}/{information}")
+    fun getRecipeById(@Path("recipeId") recipeId: String,
+                      @Path("information") information: String,
                       @Query("apiKey") apikey: String,)
     : Call<SpecificFoodRecipe>
 
