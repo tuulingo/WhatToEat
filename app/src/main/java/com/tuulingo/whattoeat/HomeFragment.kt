@@ -59,12 +59,12 @@ open class HomeFragment : Fragment() {
         })
     }
 
-    private fun getDifferentFoodTypes(offsetAmount: Int, viewId: Int){
+    private fun getDifferentFoodTypes(offsetAmount: Int, viewId: Int, foodType: String){
         val retrofitData = retrofitBuilder.getRecipes(
             apikey = MainActivity.API_KEY,
             number = MainActivity.ITEMS_SHOWN,
             offset = OffsetAmount().offsetAmount(amount = offsetAmount),
-            type = "main-course")
+            type = foodType)
 
         retrofitData.enqueue(object : Callback<RecipesData?> {
             override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
@@ -89,27 +89,27 @@ open class HomeFragment : Fragment() {
 
     private fun getMainCourse() {
 
-        getDifferentFoodTypes(900, (R.id.main_course_recycler_view))
+        getDifferentFoodTypes(900, (R.id.main_course_recycler_view), "main-course")
     }
 
     private fun getBreakfast() {
 
-        getDifferentFoodTypes(199, (R.id.breakfast_recycler_view))
+        getDifferentFoodTypes(199, (R.id.breakfast_recycler_view), "breakfast")
     }
 
     private fun getSalad() {
 
-        getDifferentFoodTypes(241, (R.id.salad_recycler_view))
+        getDifferentFoodTypes(241, (R.id.salad_recycler_view), "salad")
     }
 
     private fun getDessert() {
 
-        getDifferentFoodTypes(274, (R.id.dessert_recycler_view))
+        getDifferentFoodTypes(274, (R.id.dessert_recycler_view), "dessert")
     }
 
     private fun getBeverage() {
 
-        getDifferentFoodTypes(61, (R.id.beverage_recycler_view))
+        getDifferentFoodTypes(61, (R.id.beverage_recycler_view),"beverage")
     }
     
 }
