@@ -33,8 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNav.itemIconTintList = null
 
-        replaceFragment(HomeFragment())
+        // Ingredients for dev because home makes api calls
+        replaceFragment(IngredientsFragment())
 
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
@@ -51,20 +53,30 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+
+    }
+
+    fun switchToRecipeFragment(){
+        if(RECIPE_ID != 0){
+            replaceFragment(SpecificFoodRecipeFragment())
+        }
     }
 
     private fun replaceFragment(fragment: Fragment){
-
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bottomnav_frame_layout, fragment)
+        // disabled because icon selector doesn't keep up
+        /*fragmentTransaction.addToBackStack("tag")*/
         fragmentTransaction.commit()
     }
 
 
     companion object {
-        const val ITEMS_SHOWN = "2"
+        const val ITEMS_SHOWN = "1"
         const val API_KEY = BuildConfig.apiKey
+        var RECIPE_ID = 0
+        const val INFORMATION = "information"
     }
 
 }

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 
 class FavoritesFragment : Fragment() {
-    private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +20,6 @@ class FavoritesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        if(isVisible){
-            menu.findItem(R.id.favorites).icon = ContextCompat.getDrawable(requireActivity().application, R.drawable.ic_baseline_favorite_24)
-        }
 
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
