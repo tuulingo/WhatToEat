@@ -16,9 +16,15 @@ import com.tuulingo.whattoeat.Api.ApiInterface
 import com.tuulingo.whattoeat.Api.Client
 import com.tuulingo.whattoeat.Data.RecipesData
 import com.tuulingo.whattoeat.Data.Result
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.await
+import kotlin.system.measureTimeMillis
 
 open class HomeFragment : Fragment() {
     private lateinit var adapter: RecipeAdapter
@@ -36,13 +42,52 @@ open class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
-        getMainCourse()
-        getBreakfast()
-        getSalad()
-        getDessert()
-        getBeverage()
 
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+
+                retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
+                suspend fun getDifferentFoodTypes(
+                    offsetAmount: Int,
+                    viewId: Int,
+                    foodType: String
+                ) {
+
+                    val retrofitData = retrofitBuilder.getRecipes(
+                        apikey = MainActivity.API_KEY,
+                        number = MainActivity.ITEMS_SHOWN,
+                        offset = OffsetAmount().offsetAmount(amount = offsetAmount),
+                        type = foodType
+                    )
+
+                    if (retrofitData.isSuccessful) {
+                        val responseBody = retrofitData.body()
+                        val recipes = responseBody!!.results
+
+                        recyclerView = requireView().findViewById(viewId)
+                        recyclerView.setHasFixedSize(true)
+                        recyclerView.layoutManager = LinearLayoutManager(
+                            requireActivity().application,
+                            RecyclerView.HORIZONTAL,
+                            false
+                        )
+                        adapter = RecipeAdapter(recipes, requireActivity().application)
+                        recyclerView.adapter = adapter
+                        getMealData(adapter)
+                    }
+                    Log.d("MainActivity", "tuli error!!" + retrofitData.errorBody())
+                }
+
+                val time1 = measureTimeMillis {
+                    getDifferentFoodTypes(900, (R.id.main_course_recycler_view), "main-course")
+                    getDifferentFoodTypes(199, (R.id.breakfast_recycler_view), "breakfast")
+                    getDifferentFoodTypes(241, (R.id.salad_recycler_view), "salad")
+                    getDifferentFoodTypes(274, (R.id.dessert_recycler_view), "dessert")
+                    getDifferentFoodTypes(61, (R.id.beverage_recycler_view), "beverage")
+                }
+                Log.d("HomeFragment", "Request took time $time1")
+            }
+        }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -56,59 +101,6 @@ open class HomeFragment : Fragment() {
                 mainActivity.switchToRecipeFragment()
             }
         })
-    }
-
-    private fun getDifferentFoodTypes(offsetAmount: Int, viewId: Int, foodType: String){
-        val retrofitData = retrofitBuilder.getRecipes(
-            apikey = MainActivity.API_KEY,
-            number = MainActivity.ITEMS_SHOWN,
-            offset = OffsetAmount().offsetAmount(amount = offsetAmount),
-            type = foodType)
-
-        retrofitData.enqueue(object : Callback<RecipesData?> {
-            override fun onResponse(call: Call<RecipesData?>, response: Response<RecipesData?>) {
-                val responseBody = response.body()
-                val recipes = responseBody!!.results
-
-                recyclerView = view!!.findViewById(viewId)
-                recyclerView.setHasFixedSize(true)
-                recyclerView.layoutManager = LinearLayoutManager(requireActivity().application, RecyclerView.HORIZONTAL, false)
-                adapter = RecipeAdapter(recipes, requireActivity().application)
-                recyclerView.adapter = adapter
-                getMealData(adapter)
-
-            }
-
-            override fun onFailure(call: Call<RecipesData?>, t: Throwable) {
-                Toast.makeText(requireActivity().application, "$t", Toast.LENGTH_LONG).show()
-                Log.d("MainActivity", "tuli error!!"+t.message)
-            }
-        })
-    }
-
-    private fun getMainCourse() {
-
-        getDifferentFoodTypes(900, (R.id.main_course_recycler_view), "main-course")
-    }
-
-    private fun getBreakfast() {
-
-        getDifferentFoodTypes(199, (R.id.breakfast_recycler_view), "breakfast")
-    }
-
-    private fun getSalad() {
-
-        getDifferentFoodTypes(241, (R.id.salad_recycler_view), "salad")
-    }
-
-    private fun getDessert() {
-
-        getDifferentFoodTypes(274, (R.id.dessert_recycler_view), "dessert")
-    }
-
-    private fun getBeverage() {
-
-        getDifferentFoodTypes(61, (R.id.beverage_recycler_view),"beverage")
     }
     
 }
