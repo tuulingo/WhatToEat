@@ -75,7 +75,6 @@ open class HomeFragment : Fragment() {
                         recyclerView.adapter = adapter
                         getMealData(adapter)
                     }
-                    Log.d("MainActivity", "tuli error!!" + retrofitData.errorBody())
                 }
 
                 val time1 = measureTimeMillis {
