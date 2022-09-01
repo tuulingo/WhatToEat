@@ -2,7 +2,6 @@ package com.tuulingo.whattoeat.Api
 
 import com.tuulingo.whattoeat.Data.RecipesData
 import com.tuulingo.whattoeat.Data.SpecificFoodRecipe
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -17,9 +16,9 @@ interface ApiInterface {
 
     @Headers("Accept: application/json")
     @GET("recipes/{recipeId}/{information}")
-    fun getRecipeById(@Path("recipeId") recipeId: String,
+    suspend fun getRecipeById(@Path("recipeId") recipeId: String,
                       @Path("information") information: String,
                       @Query("apiKey") apikey: String,)
-    : Call<SpecificFoodRecipe>
+    : Response<SpecificFoodRecipe>
 
 }
