@@ -73,15 +73,16 @@ open class HomeFragment : Fragment() {
                         getMealData(adapter)
                     }
                 }
+                    val downloadFoodTypes = listOf(
+                        async { getDifferentFoodTypes(900, (R.id.main_course_recycler_view), "main-course") },
+                        async { getDifferentFoodTypes(199, (R.id.breakfast_recycler_view), "breakfast") },
+                        async { getDifferentFoodTypes(241, (R.id.salad_recycler_view), "salad") },
+                        async { getDifferentFoodTypes(274, (R.id.dessert_recycler_view), "dessert") },
+                        async { getDifferentFoodTypes(61, (R.id.beverage_recycler_view), "beverage") }
+                    )
+                    downloadFoodTypes.awaitAll()
 
-                val time1 = measureTimeMillis {
-                    getDifferentFoodTypes(900, (R.id.main_course_recycler_view), "main-course")
-                    getDifferentFoodTypes(199, (R.id.breakfast_recycler_view), "breakfast")
-                    getDifferentFoodTypes(241, (R.id.salad_recycler_view), "salad")
-                    getDifferentFoodTypes(274, (R.id.dessert_recycler_view), "dessert")
-                    getDifferentFoodTypes(61, (R.id.beverage_recycler_view), "beverage")
-                }
-                Log.d("HomeFragment", "Request took time $time1")
+
             }
         }
         // Inflate the layout for this fragment
