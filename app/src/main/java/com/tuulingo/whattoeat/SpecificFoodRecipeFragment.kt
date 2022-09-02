@@ -86,10 +86,18 @@ class SpecificFoodRecipeFragment : Fragment() {
                         binding.glutenFree,
                         binding.vegan,
                         binding.vegetarian)
-                    listOfAllergens.forEach {
-                        when(listOfTextViews){
-
+                    var counter = 0
+                    listOfTextViews.forEach {
+                        Log.d("it name", "$it")
+                        if (listOfAllergens[counter]){
+                            it.text = "${it.text} ✔"
                         }
+                        else {
+                            it.text = "${it.text} ❌"
+                        }
+                        Log.d("counter", "$counter")
+                        counter++
+
                     }
                     binding.specificFoodName.text = responseBody.title
                     var requestOptions = RequestOptions()
