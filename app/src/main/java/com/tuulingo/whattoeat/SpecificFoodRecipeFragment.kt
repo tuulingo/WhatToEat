@@ -51,13 +51,14 @@ class SpecificFoodRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        GlobalScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)
+        GlobalScope.launch(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
+                 retrofitBuilder = Client().getClient()!!.create(ApiInterface::class.java)}
                     val retrofitData = retrofitBuilder.getRecipeById(
                         recipeId = MainActivity.RECIPE_ID.toString(),
                         information = MainActivity.INFORMATION,
                         apikey = MainActivity.API_KEY,)
+
 
                 if (retrofitData.isSuccessful) {
                     val responseBody = retrofitData.body()!!
@@ -65,7 +66,7 @@ class SpecificFoodRecipeFragment : Fragment() {
                     val descTextView = binding.recipeDescription
                     descTextView.movementMethod = LinkMovementMethod.getInstance()
                     descTextView.text = Html.fromHtml(responseBody.summary)
-                    descTextView.setLinkTextColor(Color.BLUE)
+                    descTextView.setLinkTextColor(Color.CYAN)
 
                     if(responseBody.sourceUrl != "" || responseBody.sourceUrl != null){
                         binding.recipeSource.text = responseBody.sourceUrl
@@ -104,5 +105,3 @@ class SpecificFoodRecipeFragment : Fragment() {
             }
         }
     }
-
-}

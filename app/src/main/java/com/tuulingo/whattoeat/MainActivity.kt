@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
 
     companion object {
-        const val ITEMS_SHOWN = "1"
+        const val ITEMS_SHOWN = "25"
         const val API_KEY = BuildConfig.apiKey
         var RECIPE_ID = 0
         const val INFORMATION = "information"

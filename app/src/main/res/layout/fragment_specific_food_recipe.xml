@@ -12,15 +12,29 @@
         android:orientation="vertical"
         android:background="@color/pink">
 
-        <ImageView
-            android:id="@+id/specific_food_imageView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="315sp"
-            android:layout_marginTop="15sp"
-            android:padding="24sp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
-            tools:src="@tools:sample/avatars" />
+            android:layout_height="match_parent"
+            android:background="@color/pink">
+
+            <ImageView
+                android:id="@+id/specific_food_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="315sp"
+                android:layout_marginTop="15sp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="24sp"
+                android:scaleType="fitXY"
+                tools:src="@tools:sample/avatars" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="310sp"
+                android:button="@drawable/favorites_selector"
+                android:gravity="bottom"
+                android:textSize="60sp" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/specific_food_name"
@@ -29,8 +43,7 @@
             android:layout_marginLeft="24sp"
             android:textSize="32sp"
             android:gravity="top"
-            android:layout_marginBottom="15sp"
-
+            android:layout_marginBottom="20sp"
             android:text="Food name" />
 
         <RelativeLayout
@@ -104,7 +117,8 @@
             android:layout_marginLeft="24sp"
             android:layout_marginTop="16sp"
             android:layout_marginBottom="20sp"
-            android:textSize="20sp"
+            android:fontFamily="@font/amatica_sc_bold"
+            android:textSize="22sp"
             android:text="Description of the recipe" />
 
 
@@ -115,8 +129,9 @@
             android:layout_marginLeft="24sp"
             android:layout_marginTop="16sp"
             android:layout_marginBottom="20sp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:autoLink="web"
+            android:textColorLink="@color/cyan"
             android:text="Source of recipe" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
