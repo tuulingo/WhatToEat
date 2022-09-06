@@ -3,8 +3,8 @@ Too often you can't pick your next dinner, or maybe you feel like having a salad
 
 ## Screenshots
 <a href="url"><img src="https://user-images.githubusercontent.com/49025519/186153633-7835916b-b7f2-44cc-8763-cdde58e76f29.png" height="618" width="302" ></a>
-<a href="url"><img src="https://user-images.githubusercontent.com/49025519/188119366-c44ded2a-4e25-40a1-bd7a-fedf3ae5d317.png" height="618" width="302" ></a>
-<a href="url"><img src="https://user-images.githubusercontent.com/49025519/188119436-4f2d54e3-4268-4e94-89dd-16a3c6890b17.png" height="618" width="302" ></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/49025519/188587110-8d425d36-c0c2-40b8-8b57-6bad4489b69d.png" height="618" width="302" ></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/49025519/188588048-0b1494c8-b42e-47fe-89dd-23ed453b0b46.png" height="618" width="302" ></a>
 
 <br />
 
