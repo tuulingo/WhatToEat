@@ -15,4 +15,3 @@ Too often you can't pick your next dinner, or maybe you feel like having a salad
 - [Multisnap](https://github.com/TakuSemba/MultiSnapRecyclerView)
 - [Firebase](https://firebase.google.com/)
 - [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
-- [Room](https://developer.android.com/training/data-storage/room) (Soon)
